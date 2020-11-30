@@ -225,7 +225,7 @@ class PartBuilder
         if ($this->mimeBoundary === false) {
             $this->mimeBoundary = null;
             $contentType = $this->getContentType();
-            if ($contentType !== null && $contentType instanceof ParameterHeader) {
+	    if ($contentType !== null && method_exists($contentType, 'getValueFor')) {
                 $this->mimeBoundary = $contentType->getValueFor('boundary');
             }
         }
